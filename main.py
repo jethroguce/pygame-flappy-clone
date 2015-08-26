@@ -5,10 +5,14 @@ clock = pygame.time.Clock()
 
 SCREENWIDTH = 288
 SCREENHEIGHT = 512
+BASEY        = SCREENHEIGHT * 0.79
 resolution = [SCREENWIDTH, SCREENHEIGHT]
 surface = pygame.display.set_mode(resolution)
 
 background = pygame.image.load('assets/sprites/background-day.png').convert()
+base =  pygame.image.load('assets/sprites/base.png').convert_alpha()
+basex = 0
+baseShift = base.get_width() - background.get_width()
 
 bird = pygame.image.load('assets/sprites/yellowbird-downflap.png').convert_alpha()
 playerx = int(SCREENWIDTH * 0.2)
@@ -28,11 +32,12 @@ while True:
     if keystate[pygame.K_ESCAPE]:
         pygame.quit()
     elif keystate[pygame.K_UP]:
-        playery -= 1
+        playery -= 6
 
-    playery += 1/4
+    playery += 1
     player = surface.blit(bird,[playerx,playery])
-
+    basex = -((-basex + 4) % baseShift)
+    surface.blit(base, (basex, BASEY))
     pygame.display.update()
-    clock.tick(60)
+    clock.tick(30)
 
