@@ -18,6 +18,13 @@ bird = pygame.image.load('assets/sprites/yellowbird-downflap.png').convert_alpha
 playerx = int(SCREENWIDTH * 0.2)
 playery = int((SCREENHEIGHT - bird.get_height()) / 2)
 
+pipe = pygame.image.load('assets/sprites/pipe-green.png').convert_alpha()
+pipex = SCREENWIDTH + 200 + (SCREENWIDTH / 2)
+
+lowerPipes = [
+    {'x': SCREENWIDTH + 200, 'y': 200}
+]
+
 
 while True:
     surface.fill([255, 255, 255])
@@ -37,6 +44,8 @@ while True:
     playery += 1
     player = surface.blit(bird,[playerx,playery])
     basex = -((-basex + 4) % baseShift)
+    lowerPipes[0]['x'] -= 4
+    surface.blit(pipe,[lowerPipes[0]['x'], lowerPipes[0]['y']])
     surface.blit(base, (basex, BASEY))
     pygame.display.update()
     clock.tick(30)
