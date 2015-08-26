@@ -24,6 +24,8 @@ while True:
     keystate = pygame.key.get_pressed()
     if keystate[pygame.K_ESCAPE]:
         pygame.quit()
+    elif keystate[pygame.K_UP]:
+        playery -= 1
 
     playery += 1/4
     player = surface.blit(bird,[playerx,playery])
