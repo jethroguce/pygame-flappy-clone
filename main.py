@@ -2,7 +2,9 @@ import pygame
 
 pygame.init()
 
-resolution = [288, 512]
+SCREENWIDTH = 288
+SCREENHEIGHT = 512
+resolution = [SCREENWIDTH, SCREENHEIGHT]
 surface = pygame.display.set_mode(resolution)
 
 bird = pygame.image.load('assets/sprites/yellowbird-downflap.png').convert_alpha()
@@ -19,5 +21,8 @@ while True:
     if keystate[pygame.K_ESCAPE]:
         pygame.quit()
 
-    player = surface.blit(bird,[0,0])
+    playerx = int(SCREENWIDTH * 0.2)
+    playery = int((SCREENHEIGHT - bird.get_height()) / 2)
+
+    player = surface.blit(bird,[playerx,playery])
     pygame.display.update()
