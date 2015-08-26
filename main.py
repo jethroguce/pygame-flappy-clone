@@ -1,6 +1,7 @@
 import pygame
 
 pygame.init()
+clock = pygame.time.Clock()
 
 SCREENWIDTH = 288
 SCREENHEIGHT = 512
@@ -27,4 +28,5 @@ while True:
     playery += 1/4
     player = surface.blit(bird,[playerx,playery])
     pygame.display.update()
+    clock.tick(60)
 
